@@ -8,6 +8,12 @@
                     <a href="{{ route('dashboard') }}">
                         <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
                     </a>
+                    <a href="{{ route('category') }}">
+                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
+                    </a>
+                    {{-- <a href="{{ route('transactions') }}">
+                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
+                    </a> --}}
                 </div>
 
                 <!-- Navigation Links -->
@@ -15,6 +21,12 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('category')" :active="request()->routeIs('category')">
+                        {{ __('Categories') }}
+                    </x-nav-link>
+                    {{-- <x-nav-link :href="route('transactions')" :active="request()->routeIs('transactions')">
+                        {{ __('Transactions') }}
+                    </x-nav-link> --}}
                 </div>
             </div>
 
