@@ -12,8 +12,12 @@ Route::get('/', function () {
 
 Route::middleware(['auth', 'verified'])->group(function () {    
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
     Route::get('/category', [CategoryController::class, 'index'])->name('category');
+    Route::get('/category/create', [CategoryController::class, 'create'])->name('category.create');
+
     Route::get('/transaction', [TransactionController::class, 'index'])->name('transaction');
+    Route::get('/transaction/create', [TransactionController::class, 'create'])->name('transaction.create');
 });
 
 Route::middleware('auth')->group(function () {
