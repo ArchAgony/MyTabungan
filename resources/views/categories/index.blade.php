@@ -10,7 +10,8 @@
                     <h3 class="text-lg font-semibold mb-4">Categories</h3>
                 </div>
                 <div class="text-end">
-                    <a href="/category/create" class="rounded-full bg-sky-400 p-2">Create</a>
+                    <a href="/category/create" 
+                    class="inline-flex items-center px-4 py-2 bg-cyan-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-cyan-700 focus:bg-cyan-700 active:bg-cyan-900 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 transition ease-in-out duration-150">Create</a>
                 </div>
             </div>
 

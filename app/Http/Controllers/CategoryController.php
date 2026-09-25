@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -22,7 +23,8 @@ class CategoryController extends Controller
     public function create()
     {
         //
-        return view('categories.create');
+        $users = User::all();
+        return view('categories.create', compact('users'));
     }
 
     /**
@@ -31,6 +33,18 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         //
+        try {
+            $data = $request->validate([
+                'user_id' => 'required',
+                'name' => 'required|string'
+            ]);
+
+            Category::create($data);
+
+            return redirect('/category')->with('success', 'data created successfully');
+        } catch (\Exception $th) {
+            return back()->with($th->getMessage());
+        }
     }
 
     /**
