@@ -10,8 +10,8 @@
                     <h3 class="text-lg font-semibold mb-4">Categories</h3>
                 </div>
                 <div class="text-end">
-                    <a href="/category/create" 
-                    class="inline-flex items-center px-4 py-2 bg-cyan-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-cyan-700 focus:bg-cyan-700 active:bg-cyan-900 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 transition ease-in-out duration-150">Create</a>
+                    <a href="/category/create"
+                        class="inline-flex items-center px-4 py-2 bg-cyan-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-cyan-700 focus:bg-cyan-700 active:bg-cyan-900 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 transition ease-in-out duration-150">Create</a>
                 </div>
             </div>
 
@@ -25,29 +25,32 @@
                             <th scope="col"
                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                                 Name</th>
+                            <th scope="col"
+                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                                Action</th>
                         </tr>
                     </thead>
                     <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
-                        @forelse($recentTransactions ?? [] as $transaction)
+                        @forelse($category as $key => $value)
                             <tr>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
-                                    {{ \Carbon\Carbon::parse($transaction->date)->format('d M Y') }}
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">
-                                    {{ $transaction->category->name ?? 'Uncategorized' }}
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
-                                    {{ $transaction->description ?? '-' }}
-                                </td>
-                                <td
-                                    class="px-6 py-4 whitespace-nowrap text-sm text-right font-bold {{ $transaction->type == 'pemasukan' ? 'text-green-500' : 'text-red-500' }}">
-                                    {{ $transaction->type == 'pemasukan' ? '+' : '-' }} Rp
-                                    {{ number_format($transaction->amount, 0, ',', '.') }}
+                                <td class="px-6 py-3">{{ $key + 1 }}.</td>
+                                <td class="px-6 py-3">{{ $value->name }}</td>
+                                <td class="px-6 py-3">
+                                    <div class="flex items-center gap-1">
+                                        <a href="{{ route('category') }}"
+                                            class="inline-flex items-center px-4 py-2 bg-orange-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-orange-700 focus:bg-orange-700 active:bg-orange-900 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 transition ease-in-out duration-150">
+                                            Update
+                                        </a>
+                                        <a href=""
+                                            class="inline-flex items-center px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-700 focus:bg-red-700 active:bg-red-900 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition ease-in-out duration-150">
+                                            Delete
+                                        </a>
+                                    </div>
                                 </td>
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="2"
+                                <td colspan="3"
                                     class="px-6 py-4 whitespace-nowrap text-sm text-center text-gray-500 dark:text-gray-400">
                                     There are no transactions this month.
                                 </td>

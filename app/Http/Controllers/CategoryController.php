@@ -14,7 +14,8 @@ class CategoryController extends Controller
     public function index()
     {
         //
-        return view('categories.index');
+        $category = Category::with(['user'])->get();
+        return view('categories.index', compact('category'));
     }
 
     /**
