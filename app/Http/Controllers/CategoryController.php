@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CategoryController extends Controller
 {
@@ -36,15 +37,15 @@ class CategoryController extends Controller
         //
         try {
             $data = $request->validate([
-                'user_id' => 'required',
                 'name' => 'required|string'
             ]);
 
+            $data['user_id'] = Auth::id();
             Category::create($data);
 
             return redirect('/category')->with('success', 'data created successfully');
         } catch (\Exception $th) {
-            return back()->with($th->getMessage());
+            return back()->with('error', $th->getMessage());
         }
     }
 

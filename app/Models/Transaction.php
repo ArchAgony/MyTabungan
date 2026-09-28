@@ -12,7 +12,7 @@ class Transaction extends Model
     use HasFactory, Notifiable;
 
     protected $table = 'transactions';
-    protected $guaded = ['id'];
+    protected $guarded = ['id'];
 
     public function category() {
         return $this->belongsTo(Category::class, 'category_id');

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TransactionController extends Controller
 {
@@ -22,7 +24,8 @@ class TransactionController extends Controller
     public function create()
     {
         //
-        return view('transactions.create');
+        $categories = Category::all();
+        return view('transactions.create', compact('categories'));
     }
 
     /**
@@ -31,6 +34,23 @@ class TransactionController extends Controller
     public function store(Request $request)
     {
         //
+        try {
+            $data = $request->validate([
+                'category_id' => 'required|exists:categories,id',
+                'type' => 'required',
+                'amount' => 'required|numeric',
+                'date' => 'required|date',
+                'description' => 'nullable'
+            ]);
+
+            $data['user_id'] = Auth::id();
+            Transaction::create($data);
+
+            return redirect('/transaction')->with('success', 'data created successfully');
+        } catch (\Exception $th) {
+            // return back()->with('error', $th->getMessage());
+            dd($th->getMessage()); 
+        }
     }
 
     /**
