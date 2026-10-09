@@ -8,11 +8,11 @@
             <h3 class="text-lg font-semibold mb-4">Create Category</h3>
 
             <div class="overflow-x-auto">
-                <form action="/category/update" method="post">
+                <form action="/category/update/{{ old('id', $category->id) }}" method="post">
                     @csrf
                     <div class="mb-4">
                         <label for="name" class="block font-medium text-sm">Name</label>
-                        <input id="name" name="name" value="{{ old('name') }}" min="1"
+                        <input id="name" name="name" value="{{ old('name', $category->name) }}" min="1"
                             class="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm text-gray-700"
                             required placeholder="Insert category name...">
                         @error('name')

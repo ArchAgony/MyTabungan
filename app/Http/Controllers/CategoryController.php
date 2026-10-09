@@ -63,22 +63,45 @@ class CategoryController extends Controller
     public function edit(String $id)
     {
         //
-        
+        try {
+            $category = Category::findOrFail($id);
+            return view('categories.edit', compact("category"));                    
+        } catch (\Exception $th) {
+            return back()->with('error', $th->getMessage());
+        }
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, String $id)
     {
         //
+        try {
+            $data = $request->validate([
+                'name' => 'required|string'
+            ]);
+
+            $category = Category::findOrFail($id);
+
+            $category->update($data);
+
+            return redirect('/category')->with('success', 'data updated successfully');
+        } catch (\Throwable $th) {
+            return back()->with('error', $th->getMessage());
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Category $category)
+    public function destroy(String $id)
     {
-        //
+        try {
+            Category::findOrFail($id)->delete();
+            return redirect('/category')->with('success', 'data created successfully');
+        } catch (\Exception $th) {
+            return back()->with('error', $th->getMessage());
+        }
     }
 }

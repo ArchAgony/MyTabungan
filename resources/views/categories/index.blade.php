@@ -37,14 +37,14 @@
                                 <td class="px-6 py-3">{{ $value->name }}</td>
                                 <td class="px-6 py-3">
                                     <div class="flex items-center gap-1">
-                                        <a href="{{ route('category') }}"
+                                        <a href="/category/edit/{{ $value->id }}"
                                             class="inline-flex items-center px-4 py-2 bg-orange-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-orange-700 focus:bg-orange-700 active:bg-orange-900 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 transition ease-in-out duration-150">
                                             Update
                                         </a>
-                                        <a href=""
-                                            class="inline-flex items-center px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-700 focus:bg-red-700 active:bg-red-900 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition ease-in-out duration-150">
-                                            Delete
-                                        </a>
+                                        <form action="/category/delete/{{ $value->id }}" method="post">
+                                            @csrf
+                                            <button type="submit" class="inline-flex items-center px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-700 focus:bg-red-700 active:bg-red-900 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition ease-in-out duration-150">DELETE</button>
+                                        </form>
                                     </div>
                                 </td>
                             </tr>
