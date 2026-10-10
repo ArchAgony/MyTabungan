@@ -52,8 +52,7 @@
                                 <td class="px-6 py-3">
                                     {{ $transaction->category->name ?? 'Uncategorized' }}
                                 </td>
-                                <td
-                                    class="px-6 py-3">
+                                <td class="px-6 py-3">
                                     {{ $transaction->type }}
                                 </td>
                                 <td
@@ -70,10 +69,13 @@
                                             class="inline-flex items-center px-4 py-2 bg-orange-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-orange-700 focus:bg-orange-700 active:bg-orange-900 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 transition ease-in-out duration-150">
                                             Update
                                         </a>
-                                        <a href=""
-                                            class="inline-flex items-center px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-700 focus:bg-red-700 active:bg-red-900 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition ease-in-out duration-150">
-                                            Delete
-                                        </a>
+                                        <form action="/transaction/delete/{{ $transaction->id }}" method="post">
+                                            @csrf
+                                            <button type="submit"
+                                                class="inline-flex items-center px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-700 focus:bg-red-700 active:bg-red-900 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition ease-in-out duration-150">
+                                                Delete
+                                            </button>
+                                        </form>
                                     </div>
                                 </td>
                                 {{-- <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">

@@ -49,8 +49,8 @@ class TransactionController extends Controller
 
             return redirect('/transaction')->with('success', 'data created successfully');
         } catch (\Exception $th) {
-            // return back()->with('error', $th->getMessage());
-            dd($th->getMessage()); 
+            return back()->with('error', $th->getMessage());
+            // dd($th->getMessage()); 
         }
     }
 
@@ -81,8 +81,14 @@ class TransactionController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Transaction $transaction)
+    public function destroy(String $id)
     {
-        //
+        Transaction::findOrFail($id)->delete();
+
+        return redirect('/transaction')->with('success', 'data deleted successfully');            
+        try {
+        } catch (\Exception $th) {
+            // return back()->with('error', $th->getMessage());
+        }
     }
 }

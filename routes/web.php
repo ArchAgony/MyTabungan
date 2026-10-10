@@ -23,6 +23,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/transaction', [TransactionController::class, 'index'])->name('transaction');
     Route::get('/transaction/create', [TransactionController::class, 'create'])->name('transaction.create');
     Route::post('/transaction/store', [TransactionController::class, 'store'])->name('transaction.store');
+    Route::post('/transaction/delete/{id}', [TransactionController::class, 'destroy'])->name('transaction.destroy');
 });
 
 Route::middleware('auth')->group(function () {

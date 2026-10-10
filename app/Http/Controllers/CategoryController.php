@@ -99,7 +99,7 @@ class CategoryController extends Controller
     {
         try {
             Category::findOrFail($id)->delete();
-            return redirect('/category')->with('success', 'data created successfully');
+            return redirect('/category')->with('success', 'data deleted successfully');
         } catch (\Exception $th) {
             return back()->with('error', $th->getMessage());
         }
