@@ -55,7 +55,7 @@
 
                     <div class="mb-4">
                         <label for="date" class="block font-medium text-sm">Date</label>
-                        <input id="date" type="date" name="date" value="{{ old('date', date('Y-m-d')) }}"
+                        <input id="date" type="date" name="date" value="{{ old('date', date('d-m-Y')) }}"
                             class="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm text-gray-700"
                             required>
                         @error('date')

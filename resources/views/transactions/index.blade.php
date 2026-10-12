@@ -65,7 +65,7 @@
                                 </td>
                                 <td class="px-6 py-3">
                                     <div class="flex items-center gap-1">
-                                        <a href="{{ route('transaction') }}"
+                                        <a href="transaction/edit/{{ $transaction->id }}"
                                             class="inline-flex items-center px-4 py-2 bg-orange-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-orange-700 focus:bg-orange-700 active:bg-orange-900 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 transition ease-in-out duration-150">
                                             Update
                                         </a>
@@ -78,19 +78,6 @@
                                         </form>
                                     </div>
                                 </td>
-                                {{-- <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
-                                    
-                                </td> --}}
-                                {{-- <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">
-                                    
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
-                                    
-                                </td>
-                                <td
-                                    class="px-6 py-4 whitespace-nowrap text-sm text-right font-bold ">
-                                    
-                                </td> --}}
                             </tr>
                         @empty
                             <tr>

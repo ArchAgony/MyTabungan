@@ -50,7 +50,6 @@ class TransactionController extends Controller
             return redirect('/transaction')->with('success', 'data created successfully');
         } catch (\Exception $th) {
             return back()->with('error', $th->getMessage());
-            // dd($th->getMessage()); 
         }
     }
 
@@ -65,17 +64,41 @@ class TransactionController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Transaction $transaction)
+    public function edit(String $id)
     {
         //
+        try {
+            $transaction = Transaction::with(['user', 'category'])->findOrFail($id);
+            $category = Category::all();
+            return view('transactions.edit', compact('transaction', 'category'));            
+        } catch (\Exception $th) {
+            return back()->with('error', $th->getMessage());
+        }
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Transaction $transaction)
+    public function update(Request $request, String $id)
     {
         //
+        try {
+            $data = $request->validate([
+                'category_id' => 'required|exists:categories,id',
+                'type' => 'required',
+                'amount' => 'required|numeric',
+                'date' => 'required|date',
+                'description' => 'nullable'
+            ]);
+
+            $transaction = Transaction::with(['user', 'category'])->findOrFail($id);
+
+            $transaction->update($data);
+
+            return redirect('/transaction')->with('success', 'data updated successfully');
+        } catch (\Exception $th) {
+            return back()->with('error', $th->getMessage());
+        }
     }
 
     /**
