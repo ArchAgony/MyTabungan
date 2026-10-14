@@ -11,7 +11,7 @@
                     This Month's Income
                 </div>
                 <div class="mt-2 text-3xl font-bold text-gray-900 dark:text-white">
-                    Rp {{ number_format($totalPemasukan ?? 0, 0, ',', '.') }}
+                    Rp {{ number_format($income ?? 0, 0, ',', '.') }}
                 </div>
             </div>
 
@@ -20,7 +20,7 @@
                     This Month's Expenses
                 </div>
                 <div class="mt-2 text-3xl font-bold text-gray-900 dark:text-white">
-                    Rp {{ number_format($totalPengeluaran ?? 0, 0, ',', '.') }}
+                    Rp {{ number_format($expense ?? 0, 0, ',', '.') }}
                 </div>
             </div>
 
@@ -29,7 +29,7 @@
                     Remaining balance
                 </div>
                 <div class="mt-2 text-3xl font-bold text-gray-900 dark:text-white">
-                    Rp {{ number_format($sisaSaldo ?? 0, 0, ',', '.') }}
+                    Rp {{ number_format($balance ?? 0, 0, ',', '.') }}
                 </div>
             </div>
         </div>
@@ -57,7 +57,7 @@
                             </tr>
                         </thead>
                         <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
-                            @forelse($recentTransactions ?? [] as $transaction)
+                            @forelse($transactions as $key => $transaction)
                                 <tr>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
                                         {{ \Carbon\Carbon::parse($transaction->date)->format('d M Y') }}
@@ -70,8 +70,8 @@
                                         {{ $transaction->description ?? '-' }}
                                     </td>
                                     <td
-                                        class="px-6 py-4 whitespace-nowrap text-sm text-right font-bold {{ $transaction->type == 'pemasukan' ? 'text-green-500' : 'text-red-500' }}">
-                                        {{ $transaction->type == 'pemasukan' ? '+' : '-' }} Rp
+                                        class="px-6 py-4 whitespace-nowrap text-sm text-right font-bold {{ $transaction->type == 'income' ? 'text-green-500' : 'text-red-500' }}">
+                                        {{ $transaction->type == 'income' ? '+' : '-' }} Rp
                                         {{ number_format($transaction->amount, 0, ',', '.') }}
                                     </td>
                                 </tr>
